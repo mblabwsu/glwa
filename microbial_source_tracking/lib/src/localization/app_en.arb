@@ -1,0 +1,6 @@
+{
+  "appTitle": "microbial_source_tracking",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}

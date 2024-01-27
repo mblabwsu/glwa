@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626169085990",
+    "project_id": "glwa-app",
+    "storage_bucket": "glwa-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626169085990:android:f780cca42132234ab626e7",
+        "android_client_info": {
+          "package_name": "com.example.microbial_source_tracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUg6fDkFyVajfiuK_XWSwNgbOW1K7aMFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

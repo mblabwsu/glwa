@@ -10,17 +10,42 @@ environment:
   sdk: '>=3.2.5 <4.0.0'
 
 dependencies:
-  firebase_core: ^2.24.2
+  firebase_auth: ^4.17.3
+  firebase_core: ^2.25.4
   flutter:
     sdk: flutter
+  flutter_blue_plus: ^1.31.13
+  get: ^4.6.5
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^2.0.9
+  image_picker: ^1.0.7 # this enables accessing local storage 
+  file_picker: ^5.1.0 # this too but for files not just images 
+  firebase_storage: 11.6.0
+  intl: ^0.18.0
+  geolocator: ^11.0.0 # get phone location 
+  permission_handler: ^11.3.0 # handles permission for accessing phone location
+  http: ^0.13.3
+  email_validator: ^2.1.16
 
+
+  flutter_gen: any
+  dartssh2: ^2.8.2
+  cloud_firestore: ^4.15.6
+  location: ^5.0.3
+  firebase_dynamic_links: ^5.4.17
+  firebase_admin: ^0.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
+
+  flutter_native_splash: ^2.3.10
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/images/full_glwa_logo.png
 
 flutter:
   uses-material-design: true

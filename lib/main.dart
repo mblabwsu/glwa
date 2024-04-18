@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:microbial_source_tracking/src/auth/auth_page.dart';
+import 'package:microbial_source_tracking/src/themes/glwa_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  // Set up the SettingsController, which will glue user settings to multiple
-  // Flutter Widgets.
-  final settingsController = SettingsController(SettingsService());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  // Load the user's preferred theme while the splash screen is displayed.
-  // This prevents a sudden theme change when the app is first displayed.
-  await settingsController.loadSettings();
+  runApp(const MyApp());
+}
 
-  // Run the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override //This widget is the root of our application
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: glwaTheme,
+      home: StreamBuilder<BluetoothAdapterState>(
+        stream: FlutterBluePlus.adapterState,
+        initialData: BluetoothAdapterState.unknown,
+        builder: (context, snapshot) {
+          final state = snapshot.data;
+          if (state == BluetoothAdapterState.on) {
+            return const AuthPage();
+          } else {
+            return const AuthPage();
+          }
+        },
+      ),
+    );
+  }
 }

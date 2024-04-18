@@ -1,51 +1,87 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:microbial_source_tracking/src/settings/settings_model.dart';
+import 'package:microbial_source_tracking/src/widgets/profile_card.dart';
+import 'package:microbial_source_tracking/src/widgets/settings_card.dart';
 
-import 'settings_controller.dart';
-
-/// Displays the various settings that can be customized by the user.
-///
-/// When a user changes a setting, the SettingsController is updated and
-/// Widgets that listen to the SettingsController are rebuilt.
-class SettingsView extends StatelessWidget {
-  const SettingsView({super.key, required this.controller});
-
-  static const routeName = '/settings';
-
-  final SettingsController controller;
+class SettingsView extends StatefulWidget {
+  const SettingsView({
+    super.key,
+  });
 
   @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+void signUserOut() {
+  FirebaseAuth.instance.signOut();
+}
+
+class _SettingsViewState extends State<SettingsView> {
+  @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
+        //ignore: prefer_const_constructors
+        body: Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        // Glue the SettingsController to the theme selection DropdownButton.
-        //
-        // When a user selects a theme from the dropdown list, the
-        // SettingsController is updated, which rebuilds the MaterialApp.
-        child: DropdownButton<ThemeMode>(
-          // Read the selected themeMode from the controller
-          value: controller.themeMode,
-          // Call the updateThemeMode method any time the user selects a theme.
-          onChanged: controller.updateThemeMode,
-          items: const [
-            DropdownMenuItem(
-              value: ThemeMode.system,
-              child: Text('System Theme'),
-            ),
-            DropdownMenuItem(
-              value: ThemeMode.light,
-              child: Text('Light Theme'),
-            ),
-            DropdownMenuItem(
-              value: ThemeMode.dark,
-              child: Text('Dark Theme'),
-            )
-          ],
+      child: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const ProfileCard(),
+              const SizedBox(height: 0.005),
+              const Divider(),
+              const SizedBox(height: 10),
+              Column(
+                children: List.generate(
+                  settings.length,
+                  (index) => SettingsCard(settings: settings[index]),
+                ),
+              ),
+
+              // Sign out button
+              GestureDetector(
+                onTap: signUserOut,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlue.shade200,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Icon(Icons.logout, color: Colors.black),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      'Log out',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
-    );
+    ));
   }
 }

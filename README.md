@@ -3,7 +3,7 @@
 <img src="https://glwa.wpenginepowered.com/wp-content/uploads/2018/06/logo-glwa.svg" height=120> <img src="https://github.com/mblabwsu/glwa/assets/56197948/23c91bcf-a5b9-4df1-9209-9f595a8cbe62" height=120>
 
 
-The Great Lakes Water Authority (GLWA) will use this app to collect watershed contamination data from testing sites throughout the southeast Michigan region. 
+The Great Lakes Water Authority (GLWA) will use this app to collect watershed contamination data from testing sites throughout the southeast Michigan region. GLWA Contract #2100771: Method Development for Detection of Human Sources of Fecal Contamination in the Watershed.
 
 **Principal Investigators**
 - Professor Jeff Ram -<br />
